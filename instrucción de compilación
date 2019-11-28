@@ -1,0 +1,1 @@
+g++ -Wall -std=c++11 -g graph.cpp DLL.cpp Stack.cpp Lugares.cpp Vertex.cpp Monopoly.cpp main.cpp -o main.out
