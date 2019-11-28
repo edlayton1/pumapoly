@@ -22,6 +22,7 @@ void intercambiar( Jugador* primero, Jugador* segundo )
     asignar( &tmp, primero );
     asignar( primero, segundo );
     asignar( segundo, &tmp );
+
 }
 
 void quick_sort_asc( Jugador list[], size_t first, size_t last )
@@ -51,26 +52,26 @@ void quick_sort_asc( Jugador list[], size_t first, size_t last )
 
 void quick_sort_desc( Jugador list[], size_t first, size_t last )
 {
-    size_t mid = (first+last)/2;
+    size_t mid =(first+last)/2;
     int piv = list[mid].dineroFinal;
     size_t x0 = first;
-    size_t x1 = last;
-
+    size_t x1 =last;
+    
     while(x0 <= x1){
         while(list[x0].dineroFinal > piv)
-            ++x0;
+            x0++;
         while(list[x1].dineroFinal < piv)
-            --x1;
-        if(x0<= x1){
+            x1--;
+        if (x0 <= x1){
             intercambiar(&list[x0], &list[x1]);
-            ++x0;
-            --x1;
+            x0++;
+            x1--;
         }
     }
     if(first < x1)
-        quick_sort_desc(list, first, x1);
-    if(x0 < last)
-        quick_sort_desc(list, x0, last);
+        quick_sort_desc(list,first,x1);
+    if (x0 < last)
+        quick_sort_desc(list,x0,last);
 
 }
 
@@ -110,49 +111,49 @@ int main()
         std::cout << "Ingresa el nombre del jugador " << (i+1) << ":\n";
         std::cin >> player.nombre;
         player.casilla = Tablero->vertices.find("Tienda UNAM")->second.get_name();
-		player.propiedades = DLL_New();
-		player.dinero = 1000;
-		player.dineroFinal = 0;
+        player.propiedades = DLL_New();
+        player.dinero = 1000;
+        player.dineroFinal = 0;
         participantes[i] = player;
-		system( "clear" );
+        system( "clear" );
     }
 
     for( i = 0; i < turnos; i++ )
     {
-		system( "clear" );
+        system( "clear" );
         std::cout << "\t\tTurno número " << (i+1) << "\n";
-		
+        
         for( k = 0; k < jugadores; k++ )
         {
-			auxiliar = &participantes[k];
+            auxiliar = &participantes[k];
             std::cout << "\n" << auxiliar->nombre << " es tu turno de lanzar los dados\n";
             std::cout << "Presiona enter para lanzar los dados. ¡Buena suerte!\n";
             getchar();
             getchar();
-			dados = lanzarDados();
+            dados = lanzarDados();
             std::cout << "\nAl lanzar los dados has sacado " << dados << " y viajaste hasta: \n\n";
-			Tablero->traverse( auxiliar, dados );
-			imprimirCasilla( &(Tablero->vertices.find( auxiliar->casilla )->second), auxiliar, cartas );
+            Tablero->traverse( auxiliar, dados );
+            imprimirCasilla( &(Tablero->vertices.find( auxiliar->casilla )->second), auxiliar, cartas );
             std::cout << "\n------------------------------PumaPoly-------------------------------------\n";
-	    }
-		
+        }
+        
         getchar();       
         getchar();
-	}
+    }
 
     system( "clear" );
     std::cout << "\t\t\tSe han terminado los turnos\nLos resultados son los siguientes:\n";
 
     for( i = 0; i < jugadores; i++ )
     {
-		participantes[i].dineroFinal += participantes[i].dinero;
-	}
+        participantes[i].dineroFinal += participantes[i].dinero;
+    }
 
     quick_sort_asc(participantes, 0, jugadores);
     //quick_sort_desc(participantes , 0 , jugadores);
 
     /* Bajo Remodelacion
-	for( i = 0; i < jugadores; i++ )
+    for( i = 0; i < jugadores; i++ )
     {
         for( k = i + 1; k < jugadores; k ++ )
         {
@@ -163,15 +164,15 @@ int main()
                 participantes[k] = aux;
             }
         }
-	}
+    }
     */
 
-	for( i = 0; i < jugadores; i++ )
+    for( i = jugadores; i > 0; i-- )
     {
-        std::cout << (i+1) << "° lugar:" << participantes[i].nombre << "\n";
-        std::cout << "Dinero total: " << participantes[i].dineroFinal <<"\n";
+        std::cout << ((jugadores-i)+1) << "° lugar:" << participantes[i-1].nombre << "\n";
+        std::cout << "Dinero total: " << participantes[i-1].dineroFinal <<"\n";
         DLL_Delete( participantes[i].propiedades );
-	}
+    }
 
     Stack_Delete( cartas );
 }
