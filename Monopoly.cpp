@@ -6,6 +6,7 @@
 #include "Monopoly.hpp"
 #include <iostream>
 #include<stdio.h>
+#include <omp.h>
 
 /**
  * @fn lanzarDados
@@ -18,6 +19,51 @@ int lanzarDados()
     int opcion = rand() % 7+1;
     
     return opcion;
+}
+/**
+ * @brief rellena la lista de tarjetas 
+ * @param tarjetas la lista de tarjetas de suerte
+ */
+void elegirTarjeta( int tarjetas[] )
+{
+    int aux = 0,i;
+    srand( time( NULL ) );
+#pragma omp parallel for private(aux) shared(i,tarjetas)
+    for( i = 0; i < 21; i++ )
+    {
+        aux = (1 + rand() % 21);
+        int aux2 = 0;
+        
+        while( aux2 < i )
+        {
+            if( aux != tarjetas[aux2] )
+            {
+                aux2++;
+            }
+            else
+            {
+                aux = (1 + rand() % 21);
+                aux2 = 0;
+            }
+        }
+
+        tarjetas[i] = aux;
+    }
+}
+/**
+ * @brief Rellena el stack de tarjetas.
+ * @param cartas Stack de tarjetas a rellenar.
+ */
+void rellenarStack(Stack* cartas){
+    int ordenTarjetas[21],i;
+    elegirTarjeta( ordenTarjetas );
+    
+    #pragma omp parallel for private (i) shared (ordenTarjetas,cartas)
+        for( i = 0; i < 21; i++ )
+        {
+            Stack_Push( cartas, ordenTarjetas[i] );
+        }
+
 }
 
 /**
@@ -76,9 +122,14 @@ void imprimirCasilla( Vertex* e, Jugador* o, Stack* cartas )
     {
         if( a->get_status() == 2 )
         {
-            tarjeta = Stack_Pop( cartas );
-            std::cout << "\n¡Esta es una casilla de tarjeta!\nTu suerte es la siguiente:\n\n";
-		    Seleccion( tarjeta, j );
+            if(Stack_IsEmpty(cartas) == false){
+                tarjeta = Stack_Pop( cartas );
+                std::cout << "\n¡Esta es una casilla de tarjeta!\nTu suerte es la siguiente:\n\n";
+                Seleccion( tarjeta, j );
+            }else{
+                rellenarStack(cartas);
+            }
+            
         }
         else
         {
@@ -145,36 +196,6 @@ void Banco( Jugador* A )
 {
     std::cout << "\n\t\t¡" << A->nombre << " recorriste todo CU y has pasado de nuevo a la Tienda UNAM por lo que ganas 500 PumaDólares!\n\t\tCuentas con " << (A->dinero += 500) << " PumaDólares\n";
 	A->dinero += 500; 
-}
-///
-/// \brief rellena la lista de tarjetas 
-/// \param tarjetas la lista de tarjetas de suerte
-///
-void elegirTarjeta( int tarjetas[] )
-{
-    int aux = 0,i;
-    srand( time( NULL ) );
-#pragma omp parallel for private(aux) shared(i,tarjetas)
-    for( i = 0; i < 21; i++ )
-    {
-        aux = (1 + rand() % 21);
-        int aux2 = 0;
-        
-        while( aux2 < i )
-        {
-            if( aux != tarjetas[aux2] )
-            {
-                aux2++;
-            }
-            else
-            {
-                aux = (1 + rand() % 21);
-                aux2 = 0;
-            }
-        }
-
-        tarjetas[i] = aux;
-    }
 }
 
 ///

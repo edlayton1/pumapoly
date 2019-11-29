@@ -11,13 +11,15 @@
 
 int lanzarDados();
 
+void elegirTarjeta( int tarjetas[] );
+
+void rellenarStack(Stack* cartas);
+
 void imprimirCasilla( Vertex* e, Jugador* o, Stack* cartas );
 
 void comprarLugar( Jugador* a, Vertex* l, int casaExtra );
 
 void Banco( Jugador* A );
-
-void elegirTarjeta( int tarjetas[] );
 
 void Seleccion( int tarjeta, Jugador* a );
 
