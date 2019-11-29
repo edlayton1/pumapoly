@@ -16,20 +16,40 @@
 Graph* crearTablero()
 {
     Graph* Tablero = new Graph();
+    Vertex* Tienda = new Vertex();
+    Vertex* Metro = new Vertex();
+    Vertex* Bicimetro = new Vertex();
+    Vertex* Veterinaria = new Vertex();
+    Vertex* Odontologia = new Vertex();
+    Vertex* Medicina = new Vertex();
+    Vertex* Bicimedicina = new Vertex();
+    Vertex* Quimica = new Vertex();
+    Vertex* Ingenieria = new Vertex();
+    Vertex* Arquitectura = new Vertex();
+    Vertex* Rectoria = new Vertex();
+    Vertex* Biblioteca = new Vertex();
+    Vertex* Filosofia = new Vertex();
+    Vertex* Bicifilosofia = new Vertex();
+    Vertex* Derecho = new Vertex();
+    Vertex* Economia = new Vertex();
+    Vertex* AnexoIngenieria = new Vertex();
+    Vertex* Contaduria = new Vertex();
+    Vertex* Ciencias = new Vertex();
+    Vertex* BiciCiencias = new Vertex();
+    Vertex* Polacas = new Vertex();
+    Vertex* Universum = new Vertex();
+    Vertex* UnidadP = new Vertex();
     
-    #pragma omp parallel shared( Tablero )
+    #pragma omp parallel
     {
         #pragma omp sections
         {
             #pragma omp section
             {
-                Vertex* Tienda = new Vertex();
                 Tienda->name = "Tienda UNAM";
                 Tienda->set_descripcion( "Lugar en donde puedes cambiar tus PumaDólares por productos" );
-                Tienda->set_status( 3 );
-                Tablero->add_vertex( *Tienda );
-
-                Vertex* Metro = new Vertex();
+                Tienda->set_status( 3 ); 
+                
 	            Metro->name = "Estación de Metro Universidad";
                 Metro->set_descripcion( "El transporte más usado por los universitarios para trasladarse, y para llegar tarde a las clases" );
                 Metro->set_costo( 650 );
@@ -41,15 +61,11 @@ Graph* crearTablero()
                 Metro->set_status( 0 );
                 Metro->set_numeroCasa( 0 );
                 Metro->set_jugador( NULL );
-                Tablero->add_vertex( *Metro );
 
-                Vertex* Bicimetro = new Vertex();
                 Bicimetro->name = "Bici Estación del Metro CU";
                 Bicimetro->set_descripcion( "Una linda estación de Pumabicis" );
                 Bicimetro->set_status( 2 );
-                Tablero->add_vertex( *Bicimetro );
 
-                Vertex* Veterinaria = new Vertex();
                 Veterinaria->name = "Facultad de Medicina Veterinaria y Zootecnia";
                 Veterinaria->set_descripcion( "En este lugar puedes montar a caballos y acariciar perritos" );
                 Veterinaria->set_costo( 540 );
@@ -61,9 +77,7 @@ Graph* crearTablero()
                 Veterinaria->set_status( 0 );
                 Veterinaria->set_numeroCasa( 0 );
                 Veterinaria->set_jugador( NULL );
-                Tablero->add_vertex( *Veterinaria );
-
-                Vertex* Odontologia = new Vertex();
+                
                 Odontologia->name = "Facultad de Odontología";
                 Odontologia->set_descripcion( "Facultad dedicada al servicio de la salud bucal, puedes checarte los dientes gratis!" );
                 Odontologia->set_costo( 600 );
@@ -75,9 +89,7 @@ Graph* crearTablero()
                 Odontologia->set_status( 0 );
                 Odontologia->set_numeroCasa( 0 );
                 Odontologia->set_jugador( NULL );
-                Tablero->add_vertex( *Odontologia );
-
-                Vertex* Medicina = new Vertex();
+                
                 Medicina->name = "Facultad de Medicina";
                 Medicina->set_descripcion( "Una de las mejores facultades del pais, siempre con compromiso y con pocas horas de sueño" );
                 Medicina->set_costo( 950 );
@@ -89,17 +101,13 @@ Graph* crearTablero()
                 Medicina->set_status( 0 );
                 Medicina->set_numeroCasa( 0 );
                 Medicina->set_jugador( NULL );
-                Tablero->add_vertex( *Medicina );
             }
             #pragma omp section
-            {
-                Vertex* Bicimedicina = new Vertex();
+            { 
                 Bicimedicina->name = "Bici Estación de Medicina";
                 Bicimedicina->set_descripcion( "Una linda estación de Pumabicis" );
                 Bicimedicina->set_status( 2 );
-                Tablero->add_vertex( *Bicimedicina );
 
-                Vertex* Quimica = new Vertex();
                 Quimica->name = "Facultad de Química";
                 Quimica->set_descripcion( "La mejor facultad para llegar a ser como Heinserberg" );
                 Quimica->set_costo( 600 );
@@ -111,9 +119,7 @@ Graph* crearTablero()
                 Quimica->set_status( 0 );
                 Quimica->set_numeroCasa( 0 );
                 Quimica->set_jugador( NULL );
-                Tablero->add_vertex( *Quimica );
-
-                Vertex* Ingenieria = new Vertex();
+               
                 Ingenieria->name = "Facultad de Ingeniería";
                 Ingenieria->set_descripcion( "Una de las primeras facultades en construirse en Ciudad Universitaria, fuente de grandes ideas y personas" );
                 Ingenieria->set_costo( 850 );
@@ -125,9 +131,7 @@ Graph* crearTablero()
                 Ingenieria->set_jugador( NULL );
                 Ingenieria->set_status( 0 );
                 Ingenieria->set_numeroCasa( 0 );
-                Tablero->add_vertex( *Ingenieria );
-
-                Vertex* Arquitectura = new Vertex();
+                
                 Arquitectura->name = "Facultad de Arquitectura";
                 Arquitectura->set_descripcion( "Bella facultad que se encuentra alrededor de las Islas" );
                 Arquitectura->set_costo( 280 );
@@ -139,9 +143,7 @@ Graph* crearTablero()
                 Arquitectura->set_status( 0 );
                 Arquitectura->set_jugador( NULL );
                 Arquitectura->set_numeroCasa( 0 );
-                Tablero->add_vertex( *Arquitectura );
-
-                Vertex* Rectoria = new Vertex();
+               
                 Rectoria->name = "Torre de rectoría";
                 Rectoria->set_descripcion( "Lugar en donde se concentra la mayoria de la población estudiantil durante los paros o marchas" );
                 Rectoria->set_costo( 350 );
@@ -152,9 +154,7 @@ Graph* crearTablero()
                 Rectoria->set_status( 0 );
                 Rectoria->set_jugador( NULL );
                 Rectoria->set_numeroCasa( 0 );
-                Tablero->add_vertex( *Rectoria );
 
-                Vertex* Biblioteca = new Vertex();
                 Biblioteca->name = "Biblioteca Central";
                 Biblioteca->set_descripcion( "La mejor Biblioteca en América Latina, santuario de innumerables libros" );
                 Biblioteca->set_costo( 400 );
@@ -166,11 +166,9 @@ Graph* crearTablero()
                 Biblioteca->set_status( 0 );
                 Biblioteca->set_jugador( NULL );
                 Biblioteca->set_numeroCasa( 0 );
-                Tablero->add_vertex( *Biblioteca );
             }
             #pragma omp section
             {
-                Vertex* Filosofia = new Vertex();
                 Filosofia->name = "Facultad de Filosofía y Letras";
                 Filosofia->set_descripcion( "Facultad en donde las malas lenguas dicen que huele particular" );
                 Filosofia->set_costo( 200 );
@@ -181,16 +179,12 @@ Graph* crearTablero()
                 Filosofia->set_precios( precios10 );
                 Filosofia->set_status( 0 );
                 Filosofia->set_jugador( NULL );
-                Filosofia->set_numeroCasa( 0 );
-                Tablero->add_vertex( *Filosofia );
+                Filosofia->set_numeroCasa( 0 ); 
 
-                Vertex* Bicifilosofia = new Vertex();
                 Bicifilosofia->name = "Bici Estación de Filosofia";
                 Bicifilosofia->set_descripcion( "Una linda estación con Pumabicis" );
                 Bicifilosofia->set_status( 2 );
-                Tablero->add_vertex( *Bicifilosofia );
 
-                Vertex* Derecho = new Vertex();
                 Derecho->name = "Facultad de Derecho";
                 Derecho->set_descripcion( "Facultad en donde el traje es una prueba de tu finura" );
                 Derecho->set_costo( 270 );
@@ -202,9 +196,7 @@ Graph* crearTablero()
                 Derecho->set_status( 0 );
                 Derecho->set_numeroCasa( 0 );
                 Derecho->set_jugador( NULL );
-                Tablero->add_vertex( *Derecho );
 
-                Vertex* Economia = new Vertex();
                 Economia->name = "Facultad de Economía";
                 Economia->set_descripcion( "Facultad con lindo paisaje y excelente ambiente" );
                 Economia->set_costo( 290 );
@@ -216,9 +208,7 @@ Graph* crearTablero()
                 Economia->set_status( 0 );
                 Economia->set_numeroCasa( 0 );
                 Economia->set_jugador( NULL );
-                Tablero->add_vertex( *Economia );
-   
-                Vertex* AnexoIngenieria = new Vertex();
+
                 AnexoIngenieria->name = "Anexo de Ingeniería";
                 AnexoIngenieria->set_descripcion( "Gloriosa carcel de conocimientos básicos" );
                 AnexoIngenieria->set_costo( 400 );
@@ -230,11 +220,9 @@ Graph* crearTablero()
                 AnexoIngenieria->set_status( 0 );
                 AnexoIngenieria->set_jugador( NULL );
                 AnexoIngenieria->set_numeroCasa( 0 );
-                Tablero->add_vertex( *AnexoIngenieria );
             }
             #pragma omp section
             {
-                Vertex* Contaduria = new Vertex();
                 Contaduria->name = "Facultad de Contaduría";
                 Contaduria->set_descripcion( "Al parecer en este sitio nunca dejan de contar ba dum tss" );
                 Contaduria->set_costo( 260 );
@@ -245,10 +233,8 @@ Graph* crearTablero()
                 Contaduria->set_precios( precios14 );
                 Contaduria->set_status( 0 );
                 Contaduria->set_numeroCasa( 0 );
-                Contaduria->set_jugador( NULL );
-                Tablero->add_vertex( *Contaduria );
+                Contaduria->set_jugador( NULL ); 
 
-                Vertex* Ciencias = new Vertex();
                 Ciencias->name = "Facultad de Ciencias";
                 Ciencias->set_descripcion( "Facultad antagónica a Ingeniería, pero con deliciosa comida" );
                 Ciencias->set_costo( 600 );
@@ -260,15 +246,11 @@ Graph* crearTablero()
                 Ciencias->set_numeroCasa( 0 );
                 Ciencias->set_status( 0 );
                 Ciencias->set_jugador( NULL );
-                Tablero->add_vertex( *Ciencias );
 
-                Vertex* BiciCiencias = new Vertex();
                 BiciCiencias->name = "Bici Estación de Ciencias";
                 BiciCiencias->set_descripcion( "Una linda estación con Pumabicis" );
                 BiciCiencias->set_status( 2 );
-                Tablero->add_vertex( *BiciCiencias );
 
-                Vertex* Polacas = new Vertex();
                 Polacas->name = "Facultad de Ciencias Políticas y Sociales";
                 Polacas->set_descripcion( "Facultad con mas izquierda que derecha" );
                 Polacas->set_costo( 350 );
@@ -280,9 +262,7 @@ Graph* crearTablero()
                 Polacas->set_status( 0 );
                 Polacas->set_jugador( NULL );
                 Polacas->set_numeroCasa( 0 );
-                Tablero->add_vertex( *Polacas );
-
-                Vertex* Universum = new Vertex();
+            
                 Universum->name = "Museo de las Ciencias de la UNAM (UNIVERSUM)";
                 Universum->set_descripcion( "Lugar que todo universitario ha pisado" );
                 Universum->set_costo( 500 );
@@ -294,9 +274,7 @@ Graph* crearTablero()
                 Universum->set_status( 0 );
                 Universum->set_numeroCasa( 0 );
                 Universum->set_jugador( NULL );
-                Tablero->add_vertex( *Universum );
    
-                Vertex* UnidadP = new Vertex();
                 UnidadP->name = "Unidad de Posgrado";
                 UnidadP->set_descripcion( "Lugar donde las becas son el pan de todos los dias" );
                 UnidadP->set_costo( 580 );
@@ -308,10 +286,34 @@ Graph* crearTablero()
                 UnidadP->set_status( 0 );
                 UnidadP->set_jugador( NULL );
                 UnidadP->set_numeroCasa( 0 );
-                Tablero->add_vertex( *UnidadP );
             }
-        }
+        } 
     }
+
+    Tablero->add_vertex( *Tienda );
+    Tablero->add_vertex( *Metro );
+    Tablero->add_vertex( *Bicimetro );
+    Tablero->add_vertex( *Veterinaria );
+    Tablero->add_vertex( *Odontologia );
+    Tablero->add_vertex( *Medicina );
+    Tablero->add_vertex( *Bicimedicina );
+    Tablero->add_vertex( *Quimica );
+    Tablero->add_vertex( *Ingenieria );
+    Tablero->add_vertex( *Arquitectura );
+    Tablero->add_vertex( *Rectoria );
+    Tablero->add_vertex( *Biblioteca );
+    Tablero->add_vertex( *Filosofia );
+    Tablero->add_vertex( *Bicifilosofia );
+    Tablero->add_vertex( *Derecho );
+    Tablero->add_vertex( *Economia );
+    Tablero->add_vertex( *AnexoIngenieria );
+    Tablero->add_vertex( *Contaduria );
+    Tablero->add_vertex( *Ciencias );
+    Tablero->add_vertex( *BiciCiencias );
+    Tablero->add_vertex( *Polacas );
+    Tablero->add_vertex( *Universum );
+    Tablero->add_vertex( *UnidadP );
+
     Tablero->add_edge_directed("Tienda UNAM" , "Estación de Metro Universidad");
     Tablero->add_edge_directed("Estación de Metro Universidad" , "Bici Estación del Metro CU");
     Tablero->add_edge_directed("Bici Estación del Metro CU" , "Facultad de Medicina Veterinaria y Zootecnia");
