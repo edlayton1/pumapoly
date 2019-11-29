@@ -32,6 +32,13 @@ int main()
 
     std::cout << "\t\t\t\t\t¡Bienvenido a PumaPoly! \n\n¿Cuántos turnos desea jugar?: ";
     std::cin >> turnos;
+
+    while ( turnos <= 0){
+        std::cout << "Numero de turnos no valido. \t Ingrese numero de turnos: ";
+        std::cin >> turnos;
+
+    }
+
     std::cout << "\n¿Cuántos jugadores van a jugar? Máximo 4 por partida: ";
     std::cin >> jugadores;
 
