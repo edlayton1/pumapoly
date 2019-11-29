@@ -78,6 +78,9 @@ int main()
 			dados = lanzarDados();
             std::cout << "\nAl lanzar los dados has sacado " << dados << " y viajaste hasta: \n\n";
 			Tablero->traverse( auxiliar, dados );
+            if( Stack_IsEmpty( cartas ) )
+                rellenarStack( cartas );
+
 			imprimirCasilla( &(Tablero->vertices.find( auxiliar->casilla )->second), auxiliar, cartas );
             std::cout << "\n------------------------------PumaPoly-------------------------------------\n";
 	    }

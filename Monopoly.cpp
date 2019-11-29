@@ -122,14 +122,9 @@ void imprimirCasilla( Vertex* e, Jugador* o, Stack* cartas )
     {
         if( a->get_status() == 2 )
         {
-            if(Stack_IsEmpty(cartas) == false){
-                tarjeta = Stack_Pop( cartas );
-                std::cout << "\n¡Esta es una casilla de tarjeta!\nTu suerte es la siguiente:\n\n";
-                Seleccion( tarjeta, j );
-            }else{
-                rellenarStack(cartas);
-            }
-            
+            tarjeta = Stack_Pop( cartas );
+            std::cout << "\n¡Esta es una casilla de tarjeta!\nTu suerte es la siguiente:\n\n";
+            Seleccion( tarjeta, j );
         }
         else
         {
