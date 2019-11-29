@@ -8,10 +8,10 @@
 #include "Lugares.hpp"
 #include<omp.h>
 
-///
-/// \brief Crea el tablero del monopoly
-/// 
-///
+/**
+ * @brief Crea el tablero del monopoly
+ * 
+ */
 
 Graph* crearTablero()
 {
@@ -50,7 +50,7 @@ Graph* crearTablero()
                 Tienda->set_descripcion( "Lugar en donde puedes cambiar tus PumaDólares por productos" );
                 Tienda->set_status( 3 ); 
                 
-            Metro->name = "Estación de Metro Universidad";
+	            Metro->name = "Estación de Metro Universidad";
                 Metro->set_descripcion( "El transporte más usado por los universitarios para trasladarse, y para llegar tarde a las clases" );
                 Metro->set_costo( 650 );
                 Metro->set_costoCasa( 200 );
@@ -338,5 +338,5 @@ Graph* crearTablero()
     Tablero->add_edge_directed("Museo de las Ciencias de la UNAM (UNIVERSUM)" , "Unidad de Posgrado");
     Tablero->add_edge_directed("Unidad de Posgrado" , "Tienda UNAM");
 
-    return Tablero; 
+	return Tablero; 
 }
