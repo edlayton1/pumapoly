@@ -14,6 +14,7 @@
 #include "quicksort.hpp"
 #include "bubble.hpp"
 #include <iostream>
+#include<omp.h>
 
 /**
  * @fn main
@@ -29,11 +30,11 @@ int main()
     Jugador participantes[4];
     Graph* Tablero = crearTablero();
     elegirTarjeta( ordenTarjetas );
-#pragma omp parallel for private (i) shared (ordenTarjetas,cartas)
-    for( i = 0; i < 21; i++ )
-    {
-        Stack_Push( cartas, ordenTarjetas[i] );
-    }
+    #pragma omp parallel for private (i) shared (ordenTarjetas,cartas)
+        for( i = 0; i < 21; i++ )
+        {
+            Stack_Push( cartas, ordenTarjetas[i] );
+        }
 
     std::cout << "\t\t\t\t\t¡Bienvenido a PumaPoly! \n\n¿Cuántos turnos desea jugar?: ";
     std::cin >> turnos;
