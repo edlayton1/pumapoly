@@ -22,19 +22,13 @@
  */
 int main()
 {
-    int ordenTarjetas[21];
     Stack* cartas = Stack_New( 25 );
     int turnos, i, k, jugadores, dados;
 
     Jugador* auxiliar, aux;
     Jugador participantes[4];
     Graph* Tablero = crearTablero();
-    elegirTarjeta( ordenTarjetas );
-    #pragma omp parallel for private (i) shared (ordenTarjetas,cartas)
-        for( i = 0; i < 21; i++ )
-        {
-            Stack_Push( cartas, ordenTarjetas[i] );
-        }
+    rellenarStack(cartas);
 
     std::cout << "\t\t\t\t\t¡Bienvenido a PumaPoly! \n\n¿Cuántos turnos desea jugar?: ";
     std::cin >> turnos;
@@ -77,6 +71,10 @@ int main()
 			dados = lanzarDados();
             std::cout << "\nAl lanzar los dados has sacado " << dados << " y viajaste hasta: \n\n";
 			Tablero->traverse( auxiliar, dados );
+
+            if(Stack_IsEmpty(cartas) == true){
+                rellenarStack(cartas);
+            }
 			imprimirCasilla( &(Tablero->vertices.find( auxiliar->casilla )->second), auxiliar, cartas );
             std::cout << "\n------------------------------PumaPoly-------------------------------------\n";
 	    }
