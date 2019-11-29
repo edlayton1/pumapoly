@@ -122,9 +122,12 @@ void imprimirCasilla( Vertex* e, Jugador* o, Stack* cartas )
     {
         if( a->get_status() == 2 )
         {
+
             tarjeta = Stack_Pop( cartas );
             std::cout << "\n¡Esta es una casilla de tarjeta!\nTu suerte es la siguiente:\n\n";
             Seleccion( tarjeta, j );
+
+            
         }
         else
         {
@@ -190,7 +193,6 @@ void comprarLugar( Jugador* a, Vertex* l, int casaExtra )
 void Banco( Jugador* A )
 {
     std::cout << "\n\t\t¡" << A->nombre << " recorriste todo CU y has pasado de nuevo a la Tienda UNAM por lo que ganas 500 PumaDólares!\n\t\tCuentas con " << (A->dinero += 500) << " PumaDólares\n";
-	A->dinero += 500; 
 }
 
 ///

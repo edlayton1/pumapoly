@@ -32,13 +32,6 @@ int main()
 
     std::cout << "\t\t\t\t\t¡Bienvenido a PumaPoly! \n\n¿Cuántos turnos desea jugar?: ";
     std::cin >> turnos;
-
-    while ( turnos <= 0){
-        std::cout << "Numero de turnos no valido. \t Ingrese numero de turnos: ";
-        std::cin >> turnos;
-
-    }
-
     std::cout << "\n¿Cuántos jugadores van a jugar? Máximo 4 por partida: ";
     std::cin >> jugadores;
 
@@ -78,9 +71,10 @@ int main()
 			dados = lanzarDados();
             std::cout << "\nAl lanzar los dados has sacado " << dados << " y viajaste hasta: \n\n";
 			Tablero->traverse( auxiliar, dados );
-            if( Stack_IsEmpty( cartas ) )
-                rellenarStack( cartas );
 
+            if(Stack_IsEmpty(cartas) == true){
+                rellenarStack(cartas);
+            }
 			imprimirCasilla( &(Tablero->vertices.find( auxiliar->casilla )->second), auxiliar, cartas );
             std::cout << "\n------------------------------PumaPoly-------------------------------------\n";
 	    }
